@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { memo, useEffect } from 'react'
 import { useDispatch} from 'react-redux'
 

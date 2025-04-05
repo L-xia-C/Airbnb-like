@@ -22,4 +22,5 @@ class HYRequest{
         return this.request({...config,method:"post"})
     }
 }
-export default new HYRequest(BASE_URL,TIMEOUT)
+const instance = new HYRequest(BASE_URL,TIMEOUT);
+export default instance;

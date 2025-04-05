@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { memo, useCallback } from 'react'
 import { RoomsWrapper } from './style'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -19,7 +18,7 @@ const EntireRooms = memo((props) => {
   const handleItemClick=useCallback((itemData)=>{
     dispatch(changeDetailInfo(itemData))
     navigate("/detail")
-  },[dispatch])
+  },[dispatch,navigate])
 
   return (
     <RoomsWrapper>

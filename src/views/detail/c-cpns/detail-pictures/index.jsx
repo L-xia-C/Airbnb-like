@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { memo, useState } from 'react'
 import { PictureWrapper } from './style'
 import { shallowEqual, useSelector } from 'react-redux'
@@ -14,7 +13,7 @@ const DetailPictures = memo((props) => {
             <div className='pictures'>
                 <div className='left'>
                     <div className='item' onClick={() => setshowBrowser(true)}>
-                        <img src={detailInfo?.picture_urls?.[0]} />
+                        <img src={detailInfo?.picture_urls?.[0]} alt=""/>
                         <div className='cover'></div>
                     </div>
                 </div>
@@ -23,7 +22,7 @@ const DetailPictures = memo((props) => {
                         detailInfo?.picture_urls?.slice(1, 5).map(item => {
                             return (
                                 <div className='item' onClick={() => setshowBrowser(true)}>
-                                    <img src={item} key={item} />
+                                    <img src={item} key={item} alt=""/>
                                     <div className='cover'></div>
                                 </div>
                             )

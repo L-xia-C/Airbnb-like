@@ -27,7 +27,7 @@ const RoomItem = memo((props) => {
     }
     const singlePic = (
         <div className='cover'>
-            <img src={itemData.picture_url} />
+            <img src={itemData.picture_url} alt=""/>
         </div>
     )
     const swiper = (
@@ -57,7 +57,7 @@ const RoomItem = memo((props) => {
                         itemData.picture_urls?.map((item, index) => {
                             return (
                                 <div className="item">
-                                    <span className={classNames("dot", { active: selectedIndex == index })}></span>
+                                    <span className={classNames("dot", { active: selectedIndex === index })}></span>
                                 </div>
                             )
                         })
