@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { memo, useEffect,Suspense } from 'react'
+import { useLocation, useRoutes } from 'react-router'
+import routes from "./router"
+import Appheader from './components/app-header'
+import AppFooter from './components/app-footer'
+const App = memo(() => {
+  const location = useLocation()
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [location.pathname])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <Appheader />
+      <Suspense fallback="loading">
+        <div className='page'>
+          {useRoutes(routes)}
+        </div>
+      </Suspense>
+      <AppFooter />
     </div>
-  );
-}
+  )
+})
 
-export default App;
+export default App
