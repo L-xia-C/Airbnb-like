@@ -1,4 +1,4 @@
-import React, { memo, useEffect,Suspense } from 'react'
+import React, { memo, useEffect, Suspense } from 'react'
 import { useLocation, useRoutes } from 'react-router'
 import routes from "./router"
 import Appheader from './components/app-header'

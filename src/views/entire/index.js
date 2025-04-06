@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useDispatch} from 'react-redux'
 
 import { fetchEntireData } from '@/store/modules/entire/createActions'
@@ -10,6 +10,7 @@ import EntirePagination from './c-cpns/entire-pagination'
 
 const Entire = memo((props) => {
   const dispatch = useDispatch()
+  const [mode,setMode]=useState("pagination")
   useEffect(() => {
     dispatch(fetchEntireData())
   }, [dispatch])

@@ -22,7 +22,7 @@ const EntireRooms = memo((props) => {
 
   return (
     <RoomsWrapper>
-      <h2 className='title'>多达{totalCount}处住处</h2>
+      {totalCount>0 &&  <h2 className='title'>多达{totalCount}处住处</h2>}
       <div className="list">
         {
           roomList.map(item => {
