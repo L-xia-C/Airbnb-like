@@ -10,7 +10,7 @@
     * UI组件库: Ant Design 
 * 工程化工具
     *  CI/CD: Jenkins  
-## 项目演示
+## [项目演示](8.148.68.46)
 ### 首页展示
 ![alt text](src/assets/sample/Home.png)
 *首页有多个Section，结构高度相似，抽取出`SectionHeader`,`SectionRooms`,`SectionFooters`组件复用；同时单个房屋展示大量复用，抽取为`RoomItem`组件*
@@ -20,7 +20,7 @@
 ![alt text](src/assets/sample/entire.png)
 *分页展示全部房屋数据，房屋图片可轮播查看，使用`Indicator`组件指示查看轮播进度；点击房屋图片可进入详情页面查看*
 #### 无限滚动模式
-![alt text](src/assets/sample/scroll.png)
+![alt text](src/assets/sample/Scroll.png)
 *监听滚动加载数据，采用虚拟列表优化性能*
 ### 房屋详情展示
 ![alt text](src/assets/sample/detail.png)
