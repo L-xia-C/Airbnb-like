@@ -10,7 +10,7 @@
     * UI组件库: Ant Design 
 * 工程化工具
     *  CI/CD: Jenkins  
-## [项目演示](8.148.68.46)
+## [项目演示](http://8.148.68.46)
 ### 首页展示
 ![alt text](src/assets/sample/Home.png)
 *首页有多个Section，结构高度相似，抽取出`SectionHeader`,`SectionRooms`,`SectionFooters`组件复用；同时单个房屋展示大量复用，抽取为`RoomItem`组件*
