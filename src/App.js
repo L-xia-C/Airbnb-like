@@ -2,7 +2,6 @@ import React, { memo, useEffect, Suspense } from 'react'
 import { useLocation, useRoutes } from 'react-router'
 import routes from "./router"
 import Appheader from './components/app-header'
-import AppFooter from './components/app-footer'
 const App = memo(() => {
   const location = useLocation()
   useEffect(() => {
@@ -16,7 +15,6 @@ const App = memo(() => {
           {useRoutes(routes)}
         </div>
       </Suspense>
-      <AppFooter />
     </div>
   )
 })

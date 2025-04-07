@@ -4,8 +4,10 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import RoomItem from '../../../../components/room-item'
 import { changeDetailInfo } from '../../../../store/modules/detail'
 import { useNavigate } from 'react-router'
+import useScrollRestoration from '../../../../hooks/useScrollRestoration'
 
 const EntireRooms = memo((props) => {
+  useScrollRestoration('entire-pagination')
   const { roomList, totalCount, isLoading } = useSelector((state) => (
     {
       roomList: state.entire.roomList,
@@ -17,12 +19,14 @@ const EntireRooms = memo((props) => {
   const navigate=useNavigate()
   const handleItemClick=useCallback((itemData)=>{
     dispatch(changeDetailInfo(itemData))
+    const scrollTop = document.documentElement.scrollTop;
+    sessionStorage.setItem('entire-pagination', scrollTop);
     navigate("/detail")
   },[dispatch,navigate])
 
   return (
     <RoomsWrapper>
-      {totalCount>0 &&  <h2 className='title'>多达{totalCount}处住处</h2>}
+      {totalCount > 0 && <h2 className='title'>多达{totalCount}处住处</h2>}
       <div className="list">
         {
           roomList.map(item => {

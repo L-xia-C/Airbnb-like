@@ -22,15 +22,27 @@ export const changeIsLoadingAction = (isLoading) => ({
   isLoading
 })
 
-export const fetchEntireData=(page=0)=>{
-    return async (dispatch,getState)=>{
-        dispatch(changeCurrentPageAction(page))
-        dispatch(changeIsLoadingAction(true))
-        const res= await getEntireRoomList(page*20);
-        dispatch(changeIsLoadingAction(false))
-        const roomList = res.list
-        const totalCount = res.totalCount
-        dispatch(changeRoomListAction(roomList))
-        dispatch(changeTotalCountAction(totalCount))
+export const fetchRoomListAction = (page = 0, isLoadMore = false) => {
+  return async (dispatch, getState) => {
+    dispatch(changeCurrentPageAction(page))
+    if (!isLoadMore) {
+      dispatch(changeIsLoadingAction(true))
     }
+
+    const res = await getEntireRoomList(page * 20)
+
+    if (!isLoadMore) dispatch(changeIsLoadingAction(false))
+
+    const roomList = res.list
+    const totalCount = res.totalCount
+
+    if (isLoadMore) {
+      const oldList = getState().entire.roomList
+      dispatch(changeRoomListAction([...oldList, ...roomList]))
+    } else {
+      dispatch(changeRoomListAction(roomList))
+      dispatch(changeTotalCountAction(totalCount))
+    }
+  }
 }
+

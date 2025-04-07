@@ -2,7 +2,8 @@ import React, { memo } from 'react'
 import Pagination from '@mui/material/Pagination';
 import { PaginationWrapper } from './style'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { fetchEntireData } from '../../../../store/modules/entire/createActions';
+import { fetchRoomListAction } from '../../../../store/modules/entire/createActions';
+
 
 const EntirePagination = memo((props) => {
   const { roomList, currentPage, totalCount } = useSelector((state) => (
@@ -15,7 +16,7 @@ const EntirePagination = memo((props) => {
 
   const dispatch = useDispatch()
   const handleChange = (event, value) => {
-    dispatch(fetchEntireData(value - 1))
+    dispatch(fetchRoomListAction(value - 1))
     window.scrollTo({
       top:0,
       behavior:"smooth"
@@ -25,7 +26,7 @@ const EntirePagination = memo((props) => {
     <PaginationWrapper>
       {
         !!roomList.length && <div className="info">
-          <Pagination count={Math.ceil(totalCount / 20)} onChange={handleChange} />
+          <Pagination count={Math.ceil(totalCount / 20)} onChange={handleChange} page={currentPage+1}/>
           <div className="desc">
             第{currentPage * 20 + 1}-{(currentPage + 1) * 20}个房源，共{totalCount}个
           </div>

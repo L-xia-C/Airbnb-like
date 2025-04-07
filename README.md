@@ -14,9 +14,14 @@
 ### 首页展示
 ![alt text](src/assets/sample/Home.png)
 *首页有多个Section，结构高度相似，抽取出`SectionHeader`,`SectionRooms`,`SectionFooters`组件复用；同时单个房屋展示大量复用，抽取为`RoomItem`组件*
-### 房源展示
+### 房源展示 (支持分页/无限滚动)
+两种模式下均支持滚动位置记忆
+#### 分页模式
 ![alt text](src/assets/sample/entire.png)
 *分页展示全部房屋数据，房屋图片可轮播查看，使用`Indicator`组件指示查看轮播进度；点击房屋图片可进入详情页面查看*
+#### 无限滚动模式
+![alt text](src/assets/sample/scroll.png)
+*监听滚动加载数据，采用虚拟列表优化性能*
 ### 房屋详情展示
 ![alt text](src/assets/sample/detail.png)
 *可高亮正在查看的图片，点击可进入更房屋图片浏览*
@@ -40,10 +45,11 @@
 │  ├─section-header
 │  ├─section-list
 │  └─section-tabs
-├─hooks 
+├─hooks #滚动位置恢复
 ├─router #配置路由
 ├─services #网络封装
 ├─store #状态管理
+├─utils # 通用方法
 └─views # 页面
     ├─detail #房屋详情
     ├─entire #房源展示
@@ -56,3 +62,7 @@
     * 是封装一个统一的请求类，集中管理所有 API 调用
 * 路由管理
     * 使用`React.lazy`通过按需动态导入组件,需要配合 `<Suspense> `显示加载状态
+* 虚拟滚动
+    * 采用`react-window`实现窗口级虚拟滚动
+* 无限下滑
+    * 监听滚动条的下滑，同时使用节流限制。

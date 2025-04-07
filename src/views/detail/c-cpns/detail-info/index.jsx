@@ -4,7 +4,6 @@ import { InfoWrapper } from './sytle'
 const DetailInfos = memo((props) => {
   return (
     <InfoWrapper>
-        DetailInfos
     </InfoWrapper>
   )
 })
