@@ -13,6 +13,7 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
     useScrollRestoration("entire-scroll")
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight)
     // 从redux中区数据
     const { roomList, totalCount, currentPage, isLoading } = useSelector(state => ({
         roomList: state.entire.roomList,
@@ -27,8 +28,6 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
         sessionStorage.setItem('entire-scroll', scrollTop);
         navigate("/detail")
     }, [dispatch, navigate])
-
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight)
     const listRef = useRef()
     // 监听页面调整
     useEffect(() => {
@@ -67,7 +66,7 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
         const startIndex = index * 5
         const endIndex = Math.min(startIndex + 5, roomList.length)
         return (
-            <div style={{ ...style, display: 'flex' }}>
+            <div style={{ ...style, display: 'flex',maxWidth:'1680px' }}>
                 {roomList.slice(startIndex, endIndex).map(item => (
                     <RoomItem
                         key={item._id}
@@ -79,9 +78,9 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
             </div>
         )
     }, [roomList, handleItemClick])
-
+    const itemSize = ((window.innerWidth-56)/5)
     const itemCount = Math.ceil(roomList.length / 5)
-    const listContentHeight = itemCount * 330;
+    const listContentHeight = itemCount * itemSize;
     return (
         <EntireRoomsScrollWrapper>
             {totalCount > 0 && <h2 className='title'>多达{totalCount}处住处</h2>}
@@ -90,7 +89,7 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
                     ref={listRef}
                     height={windowHeight - 150}
                     itemCount={itemCount}
-                    itemSize={330}
+                    itemSize={itemSize}
                     width="100%"
                     style={{ overflow: 'visible' }}
                 >
