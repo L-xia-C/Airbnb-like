@@ -14,6 +14,7 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     // 从redux中区数据
     const { roomList, totalCount, currentPage, isLoading } = useSelector(state => ({
         roomList: state.entire.roomList,
@@ -31,10 +32,15 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
     const listRef = useRef()
     // 监听页面调整
     useEffect(() => {
-        const handleResize = () => setWindowHeight(window.innerHeight)
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
+        const handleResize = () => {
+          setWindowHeight(window.innerHeight);
+          setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
     // 无限滚动逻辑（加载更多数据）
     useEffect(() => {
         roomList.length < totalCount ? handleshowFooter(false) : handleshowFooter(true)
@@ -42,7 +48,6 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
             // {当前滚动高度，当前可视区域高度，整个页面高度}
             const { scrollTop, clientHeight, scrollHeight } = document.documentElement
             if (scrollTop + clientHeight >= scrollHeight - 600 && !isLoading && roomList.length < totalCount) {
-                console.log(scrollTop+clientHeight,scrollHeight-600)
                 dispatch(fetchRoomListAction(currentPage + 1, true))
             }
         }, 300)
@@ -66,7 +71,7 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
         const startIndex = index * 5
         const endIndex = Math.min(startIndex + 5, roomList.length)
         return (
-            <div style={{ ...style, display: 'flex',maxWidth:'1680px' }}>
+            <div style={{ ...style, display: 'flex'}}>
                 {roomList.slice(startIndex, endIndex).map(item => (
                     <RoomItem
                         key={item._id}
@@ -78,7 +83,7 @@ const EntireRoomsScroll = memo(({handleshowFooter }) => {
             </div>
         )
     }, [roomList, handleItemClick])
-    const itemSize = ((window.innerWidth-56)/5)
+    const itemSize = ((windowWidth-56)/5)
     const itemCount = Math.ceil(roomList.length / 5)
     const listContentHeight = itemCount * itemSize;
     return (
