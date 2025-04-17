@@ -70,7 +70,7 @@ export const BrowserWrapper = styled.div`
         }
 
         .pic-enter-active {
-            transform: translate(0);
+            transform: translateX(0);
             opacity: 1;
             transition: all 200ms ease;
         }
