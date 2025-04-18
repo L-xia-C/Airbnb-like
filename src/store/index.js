@@ -7,6 +7,7 @@ const store =configureStore({
         home:homeReducer,
         entire:entireReducer,
         detail:detailReduer
-    }
+    },
+    devTools: process.env.NODE_ENV !== 'production', // 仅开发环境启用
 })
 export default store
